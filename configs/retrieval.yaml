@@ -1,0 +1,32 @@
+model:
+  bert_model: "bert-base-uncased"
+  hidden_size: 768
+  hidden_dropout_prob: 0.1
+
+image:
+  encoder_type: "resnet50"
+  img_size: 512
+  num_image_embeds: 180
+  img_hidden_sz: 2048
+
+data:
+  train_path: "data/mimic/retrieval_train.jsonl"
+  val_path: "data/mimic/retrieval_val.jsonl"
+  test_path: "data/mimic/retrieval_test.jsonl"
+  seq_len: 128
+  num_workers: 4
+
+training:
+  output_dir: "outputs/retrieval"
+  epochs: 10
+  batch_size: 32
+  lr: 5.0e-5
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  gradient_accumulation_steps: 1
+  max_grad_norm: 1.0
+  fp16: true
+  seed: 42
+  logging_steps: 50
+
+task: "retrieval"
